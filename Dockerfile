@@ -2,6 +2,7 @@ FROM python:3-alpine AS builder
  
 WORKDIR /app
  
+RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev cargo 
 RUN python3 -m venv venv
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
