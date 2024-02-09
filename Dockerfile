@@ -1,8 +1,15 @@
-FROM python:3-alpine AS builder
+FROM python:3-slim-buster AS builder
  
 WORKDIR /app
  
-RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev cargo 
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    libffi-dev \
+    libssl-dev \
+    cargo \
+    && rm -rf /var/lib/apt/lists/*
+    
 RUN python3 -m venv venv
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
@@ -11,7 +18,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
  
 # Stage 2
-FROM python:3-alpine AS runner
+FROM python:3-slim-buster AS runner
  
 WORKDIR /app
  
@@ -25,7 +32,6 @@ COPY games_reviews.parquet games_reviews.parquet
 COPY games.parquet games.parquet
 COPY item_item.parquet item_item.parquet
 COPY user_item_model.parquet user_item_model.parquet
-
  
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
