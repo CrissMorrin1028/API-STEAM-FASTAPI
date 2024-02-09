@@ -26,7 +26,8 @@ RUN pip install --upgrade pip
 RUN pip install numpy
 # RUN pip install -r requirements.txt
 # Instalar las dependencias
-RUN pip install --no-cache-dir -r requirements.txt
+# Instalar las dependencias utilizando PEP 517
+RUN pip install --no-cache-dir --use-pep517 -r requirements.txt
 # RUN pip install --use-pep517 -r requirements.txt
 
  
