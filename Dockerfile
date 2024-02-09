@@ -18,7 +18,7 @@ COPY --from=builder /app/venv venv
 COPY main.py main.py
 COPY funciones.py funciones.py
 COPY user_item_model.pkl user_item_model.pkl
-COPY item_similarities.pkl item_similarities.pkl
+COPY item_similarity.pkl item_similarity.pkl
 COPY games_items.parquet games_items.parquet
 COPY games_reviews.parquet games_reviews.parquet
 COPY games.parquet games.parquet
