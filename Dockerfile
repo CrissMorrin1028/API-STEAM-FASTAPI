@@ -13,9 +13,14 @@ RUN apt-get update && apt-get install -y \
 RUN python3 -m venv venv
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Ensure pip is installed in the virtual environment
+RUN python3 -m ensurepip
  
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+# RUN pip install --use-pep517 -r requirements.txt
+
  
 # Stage 2
 FROM python:3-slim-buster AS runner
