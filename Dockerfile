@@ -18,7 +18,15 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN python3 -m ensurepip
  
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+
+# Actualizar pip antes de instalar las dependencias del proyecto
+RUN pip install --upgrade pip
+
+# Instalar numpy antes de las demás dependencias
+RUN pip install numpy
+# RUN pip install -r requirements.txt
+# Instalar las dependencias
+RUN pip install --no-cache-dir -r requirements.txt
 # RUN pip install --use-pep517 -r requirements.txt
 
  
