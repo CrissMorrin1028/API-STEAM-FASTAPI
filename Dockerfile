@@ -1,4 +1,4 @@
-FROM python:3-slim-buster AS builder
+FROM python:3-alpine AS builder
  
 WORKDIR /app
  
@@ -30,8 +30,9 @@ RUN pip install --no-cache-dir --use-pep517 -r requirements.txt
 # RUN pip install --use-pep517 -r requirements.txt
 
  
+
 # Stage 2
-FROM python:3-slim-buster AS runner
+FROM python:3-alpine AS runner
  
 WORKDIR /app
  
