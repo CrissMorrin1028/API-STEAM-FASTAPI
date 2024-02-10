@@ -17,6 +17,7 @@ COPY games_reviews.parquet games_reviews.parquet
 COPY games.parquet games.parquet
 COPY item_item.parquet item_item.parquet
 COPY user_item_model.parquet user_item_model.parquet
+COPY user_item_model.joblib user_item_model.joblib
  
 EXPOSE 8000
  
