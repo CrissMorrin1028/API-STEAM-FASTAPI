@@ -9,8 +9,8 @@ import pickle
 import numpy as np
 
 # Cargar el modelo del archivo .pkl
-with open('user_item_model.pkl', 'rb') as archivo:
-    modelo = pickle.load(archivo)
+# with open('user_item_model.pkl', 'rb') as archivo:
+#     modelo = pickle.load(archivo)
 
 
 # FUNCIÓN 1 - DESARROLLADORES CON JUEGOS GRATUITOS 
@@ -468,8 +468,7 @@ def recomendacion_juego(item_id):
         return {"Juegos similares al id ingresado": recommended_games}
 
   
-
-# SISTEMA DE RECOMENDACIÓN - USER-USER 
+# SISTEMA DE RECOMENDACIÓN - USER-ITEM
 def recomendacion_usuario(user_id):
     """
     Sistema de recomendación user-item.
@@ -488,10 +487,14 @@ def recomendacion_usuario(user_id):
     - Si el DataFrame está vacío, devuelve un mensaje de error.
     - Si el user_id no existe en el DataFrame, devuelve un mensaje de error.
     """
+    # Cargar el modelo del archivo .pkl
+    with open('user_item_model.pkl', 'rb') as archivo:
+        modelo = pickle.load(archivo)
+
     # Cargar los datos del archivo .parquet
     new_df = pd.read_parquet('user_item_model.parquet')
 
-    # # Si el dataframe está vacío, devolver un mensaje de error
+    # Si el dataframe está vacío, devolver un mensaje de error
     if new_df.empty:
         return {
         "detail": [
