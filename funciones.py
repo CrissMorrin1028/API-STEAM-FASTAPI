@@ -7,10 +7,11 @@ from surprise import Reader, Dataset, SVD
 from surprise.model_selection import train_test_split, GridSearchCV
 import pickle 
 import numpy as np
+from joblib import load
 
-# Cargar el modelo del archivo .pkl
-# with open('user_item_model.pkl', 'rb') as archivo:
-#     modelo = pickle.load(archivo)
+
+# cargar el modelo joblib
+modelo = load('user_item_model.joblib')
 
 
 # FUNCIÓN 1 - DESARROLLADORES CON JUEGOS GRATUITOS 
@@ -487,9 +488,9 @@ def recomendacion_usuario(user_id):
     - Si el DataFrame está vacío, devuelve un mensaje de error.
     - Si el user_id no existe en el DataFrame, devuelve un mensaje de error.
     """
-    # Cargar el modelo del archivo .pkl
-    with open('user_item_model.pkl', 'rb') as archivo:
-        modelo = pickle.load(archivo)
+    # # Cargar el modelo del archivo .pkl
+    # with open('user_item_model.pkl', 'rb') as archivo:
+    #     modelo = pickle.load(archivo)
 
     # Cargar los datos del archivo .parquet
     new_df = pd.read_parquet('user_item_model.parquet')
